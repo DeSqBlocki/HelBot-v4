@@ -13,8 +13,8 @@ module.exports = {
         
         const guild = DiscordClient.guilds.cache.get(guildID)
         const channel = guild.channels.cache.get(welcomeID)
-        const logs = guild.channels.cache.get(logID)
-        logs.send(`${member.user.username} joined the Server`)
+        //const logs = guild.channels.cache.get(logID)
+        //logs.send(`${member.user.username} joined the Server`)
 
         const canvas = new createCanvas(700, 250)
         const ctx = canvas.getContext('2d')
