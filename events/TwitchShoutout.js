@@ -1,4 +1,4 @@
-var buffer = new Map();
+var soBuffer = new Map();
 const Modules = require('../index')
 const TwitchClient = Modules.TwitchClient
 const Helix = Modules.Helix
@@ -8,16 +8,16 @@ module.exports = {
     name: 'TwitchShoutout',
     once: false,
     async execute(reason, channel, username) {
-        buffer.set(username, channel) // add user to buffer
-        console.log(`Added ${username} to the buffer, shouting out soon! Reason: ${reason}`);
+        soBuffer.set(username, channel) // add user to soBuffer
+        console.log(`Added ${username} to the soBuffer, shouting out soon! Reason: ${reason}`);
     }
 }
-function buffered() {
-    let u = buffer.keys().next().value // next user in buffer
-    let c = buffer.values().next().value // associated channel
-    if (u) { // if anything is in the buffer, do:
+function soBuffered() {
+    let u = soBuffer.keys().next().value // next user in soBuffer
+    let c = soBuffer.values().next().value // associated channel
+    if (u) { // if anything is in the soBuffer, do:
         doShoutouts(c, u) // call shoutout function
-        buffer.delete(u) // delete after shoutout
+        soBuffer.delete(u) // delete after shoutout
     }
 }
 async function getIDByName(user) {
@@ -31,7 +31,7 @@ async function doShoutouts(channel, user) {
     // let from_broadcaster_user_id = String(await getIDByName(channel))
     // let to_broadcaster_user_id = String(await getIDByName(user))
     // await Helix.chat.shoutout(from_broadcaster_user_id, to_broadcaster_user_id, TTV_ModID)
-    
+
     // missing from_broadcaster_id ???
 }
-setInterval(buffered, 6000) // Call buffered() every 6s, indefinitely
+setInterval(soBuffered, 6000) // Call soBuffered() every 6s, indefinitely

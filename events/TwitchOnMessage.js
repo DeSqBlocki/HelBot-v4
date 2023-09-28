@@ -1,9 +1,26 @@
-const { TTV_Prefix } = require('../config.json')
-const knownBots = new Set(['streamlabs', 'nightbot', 'moobot', 'soundalerts', 'streamelements', 'remasuri_bot', 'commanderroot','x__hel_bot__x'])
-const Modules = require('../index')
-const TwitchClient = Modules.TwitchClient
-const DiscordClient = Modules.DiscordClient
-const mClient = Modules.mClient
+const { mClient, DiscordClient, TwitchClient, Helix } = require('..')
+const { TTV_Prefix, TTV_ModID } = require('../config.json')
+const knownBots = new Set(['streamlabs', 'nightbot', 'moobot', 'soundalerts', 'streamelements', 'remasuri_bot', 'commanderroot', 'x__hel_bot__x'])
+async function updateChatMode(userID, setTo) {
+    let state
+    if (setTo === 'on') {
+        state = true
+    } else if (setTo === 'off') {
+        state = false
+    } else {
+        return
+    }
+    await Helix.chat.updateSettings(userID, TTV_ModID, {
+        follower_mode: state,
+        follower_mode_duration: 0,
+        subscriber_mode: state,
+        emote_mode: state
+    });
+}
+async function getIDByName(user) {
+    const result = await Helix.users.get(user);
+    return result.data[0].id
+}
 module.exports = {
     name: 'TwitchOnMessage',
     once: false,
@@ -45,7 +62,7 @@ module.exports = {
         async function verifyUser(channel, username) {
             let db = mClient.db("shoutouts")
             let col = db.collection(channel)
-        
+
             let query = { user: username }
             let status = await col.findOne(query)
             if (!status) {
@@ -56,5 +73,5 @@ module.exports = {
             }
         }
     }
-    
+
 }

@@ -1,5 +1,4 @@
-const Modules = require('../index')
-const mClient = Modules.mClient
+const { mClient } = require("..")
 module.exports = {
     name: 'TwitchOnSubOnly',
     once: false,

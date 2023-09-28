@@ -1,3 +1,4 @@
+process.traceDeprecation = false
 const { REST, Routes, Client, Events, GatewayIntentBits, Collection } = require('discord.js')
 const { token, clientID, guildID, TTV_ID, TTV_Token, TTV_User, mongoURI } = require('./config.json')
 const { MongoClient } = require('mongodb')
@@ -40,7 +41,7 @@ TwitchClient.connect().then(exports.TwitchClient = TwitchClient)
 DiscordClient.commands = new Collection() // used internally by interactions
 let commands = [] // only used for REST API
 
-const foldersPath = path.join(__dirname, 'commands');
+const foldersPath = path.join(__dirname, 'discord-commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {

@@ -26,8 +26,8 @@ module.exports = {
                 .setTitle(`Stream Notice!`)
                 .setURL(`https://twitch.tv/${channel}`)
                 .setDescription(`*${streamdata.title}*\nThey're playing **${streamdata.game_name}**`)
-                .setTimestamp()
-                .setFooter({ text: 'HelBot by DeSqBlocki', iconURL: 'https://cdn.discordapp.com/attachments/345238918582763520/901262809466282034/HelBotIcon.png' })
+                //.setTimestamp()
+                //.setFooter({ text: 'HelBot by DeSqBlocki', iconURL: 'https://media.discordapp.net/attachments/1133053688064262234/1156841130349051975/HelBot.png' })
                 .setImage(imageUrl)
             return embed
         }

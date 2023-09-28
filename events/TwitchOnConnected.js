@@ -41,7 +41,7 @@ module.exports = {
                 });
             }
             const conditions = [{
-                broadcaster_user_id: String(await getIDByName("desq_blocki"))
+                broadcaster_user_id: String(await getIDByName("x__hel__x")) // streamer to sub to
             }]
         
             // Hel Events
