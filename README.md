@@ -5,3 +5,4 @@ Features:
 - MongoDB Entries for Shoutouts
 - Discord Social Command
 - Twitch Channel Modes on/off
+- Custom Chat Commands
