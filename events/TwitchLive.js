@@ -40,6 +40,6 @@ module.exports = {
             const result = await Helix.users.get(user);
             return result.data[0].id
         }
-        notifyChannel(roleID, guildID, liveID, streamer)
+        // notifyChannel(roleID, guildID, liveID, streamer) // Turned off for now
     }
 }
